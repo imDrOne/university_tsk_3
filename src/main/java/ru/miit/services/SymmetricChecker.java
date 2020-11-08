@@ -1,18 +1,24 @@
 package ru.miit.services;
 
+import ru.miit.annotation.Added;
+
+import javax.enterprise.event.Observes;
 import java.util.ArrayList;
 
 public class SymmetricChecker {
-    public static boolean symmetricHelper(ArrayList<Integer> A, int i) {
+    public void symmetricHelper(@Observes @Added ArrayList<Integer> A) {
         int size = A.size();
 
-        if (i > size/2)
-            return true;
+        for (int j = 0; j < size; j++) {
+            if (!A.get(j).equals(A.get(size - 1 - j))) {
+                System.out.println("Array is not symmetric: " + A.toString());
+                return;
+            }
+        }
+        System.out.println("Array is symmetric: " + A.toString());
+    }
 
-        else if (!A.get(i).equals(A.get(size - 1 - i)))
-            return false;
-
-        else
-            return symmetricHelper(A, i+1);
+    public void testObserver(@Observes String msg) {
+        System.out.println(msg);
     }
 }
