@@ -22,9 +22,6 @@ public class App {
         arr.add(1);
         arr.remove(1);
 
-//        System.out.println(SymmetricChecker.symmetricHelper(arr.convertIntegers(), (int)arr.getSize(), 0));
-//        System.out.println(GFC.countUniqueValues(arr.convertIntegers()));
-
         container.shutdown();
     }
 }
